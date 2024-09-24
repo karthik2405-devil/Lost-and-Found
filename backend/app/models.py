@@ -3,6 +3,7 @@ from sqlalchemy.sql.expression import text
 from sqlalchemy.orm import relationship
 from database import Base
 from datetime import datetime
+import datetime
 
 class User(Base):
     __tablename__="User"
@@ -20,19 +21,19 @@ class Lost_items(Base):
     item_name=Column(String,nullable=False)
     description=Column(String)
     location_lost=Column(String)
-    date_lost=Column(datetime,default=datetime.uctnow)
+    # date_lost=Column(datetime,default=datetime.uctnow)
 
     # defining relations between user table and lost_items table
     owner_id = Column(Integer, ForeignKey("users.id"))
     owner = relationship("User", back_populates="lost_items")
 
 class Found_items(Base):
-    __table__name='found_items'
+    __tablename__="found_items"
     id=Column(Integer,primary_key=True,nullable=False)
     item_name=Column(String,nullable=False)
     description=Column(String)
     location_found=Column(String)
-    date_found=Column(datetime,default=datetime.uctnow)
+    # date_found=Column(datetime,default=datetime.uctnow)
 
     # defining relations between user table and found_items table
     finder_id = Column(Integer, ForeignKey("users.id"))
